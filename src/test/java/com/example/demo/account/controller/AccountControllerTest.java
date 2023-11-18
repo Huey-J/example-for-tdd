@@ -3,6 +3,7 @@ package com.example.demo.account.controller;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -112,7 +113,8 @@ public class AccountControllerTest {
       );
 
       // then
-      result.andExpect(status().isBadRequest());
+      result.andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("이미 존재하는 계좌번호입니다."));
     }
 
     @Test
@@ -136,7 +138,8 @@ public class AccountControllerTest {
       );
 
       // then
-      result.andExpect(status().isBadRequest());
+      result.andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("잘못된 입력입니다."));
     }
 
     @Test
@@ -160,7 +163,8 @@ public class AccountControllerTest {
       );
 
       // then
-      result.andExpect(status().isBadRequest());
+      result.andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("잘못된 입력입니다."));
     }
 
     @Test
@@ -182,7 +186,8 @@ public class AccountControllerTest {
       );
 
       // then
-      result.andExpect(status().isBadRequest());
+      result.andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("잘못된 입력입니다."));
     }
 
     @Test
@@ -204,7 +209,8 @@ public class AccountControllerTest {
       );
 
       // then
-      result.andExpect(status().isBadRequest());
+      result.andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("잘못된 입력입니다."));
     }
 
     @Test
@@ -226,7 +232,8 @@ public class AccountControllerTest {
       );
 
       // then
-      result.andExpect(status().isBadRequest());
+      result.andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("잘못된 입력입니다."));
     }
   }
 
