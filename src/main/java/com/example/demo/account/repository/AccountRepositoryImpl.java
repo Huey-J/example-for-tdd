@@ -14,12 +14,6 @@ public class AccountRepositoryImpl implements AccountRepository {
 
   @Override
   public void save(Account account) {
-    AccountEntity accountEntity = AccountEntity.builder()
-        .accountNumber(account.accountNumber())
-        .password(account.password())
-        .owner(account.owner())
-        .alias(account.alias())
-        .build();
-    accountJpaRepository.save(accountEntity);
+    accountJpaRepository.save(AccountEntity.from(account));
   }
 }
