@@ -2,6 +2,7 @@ package com.example.demo.account.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -9,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.example.demo.account.exception.AccountException;
 import com.example.demo.account.service.AccountService;
 import com.example.demo.common.GlobalExceptionHandler;
+import java.math.BigDecimal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -237,6 +239,40 @@ public class AccountControllerTest {
       // then
       result.andExpect(status().isBadRequest())
           .andExpect(jsonPath("$.message").value("잘못된 입력입니다."));
+    }
+  }
+
+  @Nested
+  class transfer {
+
+    private final String API_PATH = "/api/v1/account/transfer";
+
+    @Test
+    void 계좌_이체_성공_시_200과_송금대상_게좌의_소유주와_잔액을_반환한다() {
+    }
+
+    @Test
+    void 잔액이_부족한_경우_400을_반환한다() {
+    }
+
+    @Test
+    void 송금대상_계좌가_존재하지_않는_경우_400을_반환한다() {
+    }
+
+    @Test
+    void 계좌의_비밀번호가_틀린_경우_400을_반환한다() {
+    }
+
+    @Test
+    void 송금액이_1원보다_작을_경우_400을_반환한다() {
+    }
+
+    @Test
+    void 입금_계좌번호가_null인_경우_400을_반환한다() {
+    }
+
+    @Test
+    void 출금_계좌번호가_null인_경우_400을_반환한다() {
     }
   }
 
