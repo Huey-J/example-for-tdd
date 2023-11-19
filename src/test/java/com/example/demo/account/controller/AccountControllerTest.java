@@ -248,31 +248,188 @@ public class AccountControllerTest {
     private final String API_PATH = "/api/v1/account/transfer";
 
     @Test
-    void 계좌_이체_성공_시_200과_송금대상_게좌의_소유주와_잔액을_반환한다() {
+    void 계좌_이체_성공_시_200과_송금대상_게좌의_소유주와_잔액을_반환한다() throws Exception {
+      // given
+      var requestDTO = """
+              {
+                "fromAccountNumber": "1111-00-123456789",
+                "toAccountNumber": "2222-00-123456789",
+                "password": "abc123",
+                "amount": 1000
+              }
+          """;
+      doReturn(new AccountTransferResponseDTO(BigDecimal.valueOf(9000l), "붕어빵 맛집")).when(accountService).transfer(any());
+
+      // when
+      ResultActions result = mockMvc.perform(
+          MockMvcRequestBuilders
+              .post(API_PATH)
+              .contentType(MediaType.APPLICATION_JSON)
+              .content(requestDTO)
+      );
+
+      // then
+      result
+          .andExpect(status().isOk())
+          .andExpect(jsonPath("$.fromAccountBalance").value(BigDecimal.valueOf(9000l)))
+          .andExpect(jsonPath("$.toAccountOwner").value("붕어빵 맛집"));
     }
 
     @Test
-    void 잔액이_부족한_경우_400을_반환한다() {
+    void 잔액이_부족한_경우_400을_반환한다() throws Exception {
+      // given
+      var requestDTO = """
+              {
+                "fromAccountNumber": "1111-00-123456789",
+                "toAccountNumber": "2222-00-123456789",
+                "password": "abc123",
+                "amount": 1000
+              }
+          """;
+      doThrow(new AccountException("잔액이 부족합니다.")).when(accountService).transfer(any());
+
+      // when
+      ResultActions result = mockMvc.perform(
+          MockMvcRequestBuilders
+              .post(API_PATH)
+              .contentType(MediaType.APPLICATION_JSON)
+              .content(requestDTO)
+      );
+
+      // then
+      result
+          .andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("잔액이 부족합니다."));
     }
 
     @Test
-    void 송금대상_계좌가_존재하지_않는_경우_400을_반환한다() {
+    void 송금대상_계좌가_존재하지_않는_경우_400을_반환한다() throws Exception {
+      // given
+      var requestDTO = """
+              {
+                "fromAccountNumber": "1111-00-123456789",
+                "toAccountNumber": "2222-00-123456789",
+                "password": "abc123",
+                "amount": 1000
+              }
+          """;
+      doThrow(new AccountException("계좌번호가 존재하지 않습니다.")).when(accountService).transfer(any());
+
+      // when
+      ResultActions result = mockMvc.perform(
+          MockMvcRequestBuilders
+              .post(API_PATH)
+              .contentType(MediaType.APPLICATION_JSON)
+              .content(requestDTO)
+      );
+
+      //then
+      result
+          .andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("계좌번호가 존재하지 않습니다."));
     }
 
     @Test
-    void 계좌의_비밀번호가_틀린_경우_400을_반환한다() {
+    void 계좌의_비밀번호가_틀린_경우_400을_반환한다() throws Exception {
+      // given
+      var requestDTO = """
+              {
+                "fromAccountNumber": "1111-00-123456789",
+                "toAccountNumber": "2222-00-123456789",
+                "password": "abc123",
+                "amount": 1000
+              }
+          """;
+      doThrow(new AccountException("비밀번호가 틀립니다.")).when(accountService).transfer(any());
+
+      // when
+      ResultActions result = mockMvc.perform(
+          MockMvcRequestBuilders
+              .post(API_PATH)
+              .contentType(MediaType.APPLICATION_JSON)
+              .content(requestDTO)
+      );
+
+      //then
+      result
+          .andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("비밀번호가 틀립니다."));
     }
 
     @Test
-    void 송금액이_1원보다_작을_경우_400을_반환한다() {
+    void 송금액이_0원_이하인_경우_400을_반환한다() throws Exception {
+      // given
+      var requestDTO = """
+              {
+                "fromAccountNumber": "1111-00-123456789",
+                "toAccountNumber": "2222-00-123456789",
+                "password": "abc123",
+                "amount": 0
+              }
+          """;
+
+      // when
+      ResultActions result = mockMvc.perform(
+          MockMvcRequestBuilders
+              .post(API_PATH)
+              .contentType(MediaType.APPLICATION_JSON)
+              .content(requestDTO)
+      );
+
+      //then
+      result
+          .andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("잘못된 입력입니다."));
     }
 
     @Test
-    void 입금_계좌번호가_null인_경우_400을_반환한다() {
+    void 입금_계좌번호가_null인_경우_400을_반환한다() throws Exception {
+      // given
+      var requestDTO = """
+              {
+                "fromAccountNumber": "1111-00-123456789",
+                "password": "abc123",
+                "amount": 1000
+              }
+          """;
+
+      // when
+      ResultActions result = mockMvc.perform(
+          MockMvcRequestBuilders
+              .post(API_PATH)
+              .contentType(MediaType.APPLICATION_JSON)
+              .content(requestDTO)
+      );
+
+      //then
+      result
+          .andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("잘못된 입력입니다."));
     }
 
     @Test
-    void 출금_계좌번호가_null인_경우_400을_반환한다() {
+    void 출금_계좌번호가_null인_경우_400을_반환한다() throws Exception {
+      // given
+      var requestDTO = """
+              {
+                "toAccountNumber": "2222-00-123456789",
+                "password": "abc123",
+                "amount": 1000
+              }
+          """;
+
+      // when
+      ResultActions result = mockMvc.perform(
+          MockMvcRequestBuilders
+              .post(API_PATH)
+              .contentType(MediaType.APPLICATION_JSON_UTF8)
+              .content(requestDTO)
+      );
+
+      //then
+      result
+          .andExpect(status().isBadRequest())
+          .andExpect(jsonPath("$.message").value("잘못된 입력입니다."));
     }
   }
 
