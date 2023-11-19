@@ -22,4 +22,10 @@ public class AccountController {
     return ResponseEntity.ok("success");
   }
 
+  @PostMapping("/transfer")
+  public ResponseEntity<AccountTransferResponseDTO> transfer(@RequestBody @Valid AccountTransferRequestDTO requestDTO) {
+    AccountTransferResponseDTO responseDTO = accountService.transfer(requestDTO);
+    return ResponseEntity.ok(responseDTO);
+  }
+
 }

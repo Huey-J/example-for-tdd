@@ -1,6 +1,8 @@
 package com.example.demo.account.service;
 
 import com.example.demo.account.controller.AccountCreateRequestDTO;
+import com.example.demo.account.controller.AccountTransferRequestDTO;
+import com.example.demo.account.controller.AccountTransferResponseDTO;
 import com.example.demo.account.domain.Account;
 import com.example.demo.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,4 +26,8 @@ public class AccountServiceImpl implements AccountService {
     accountRepository.save(account);
   }
 
+  @Override
+  public AccountTransferResponseDTO transfer(AccountTransferRequestDTO requestDTO) {
+    return null;
+  }
 }
