@@ -6,6 +6,8 @@ import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import com.example.demo.account.exception.AccountException;
+import com.example.demo.account.service.AccountService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -190,26 +192,6 @@ public class AccountControllerTest {
           .andExpect(jsonPath("$.message").value("잘못된 입력입니다."));
     }
 
-  }
-
-  private class AccountException extends Throwable {
-    public AccountException(String s) {
-    }
-  }
-
-  private class AccountService {
-    public CreateAccountResponseDto create(CreateAccoutRequestDto o) {
-      return null;
-    }
-  }
-
-  private class AccountController {
-  }
-
-  private record CreateAccountResponseDto(long id, String owner, String accountNumber, int balance) {
-  }
-
-  private record CreateAccoutRequestDto() {
   }
 
 }
