@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.demo.account.exception.AccountException;
+import com.example.demo.account.exception.GlobalExceptionHandler;
 import com.example.demo.account.service.AccountService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -35,6 +36,7 @@ public class AccountControllerTest {
   void init() {
     mockMvc = MockMvcBuilders
         .standaloneSetup(accountController)
+        .setControllerAdvice(new GlobalExceptionHandler())
         .build();
   }
 
