@@ -13,6 +13,8 @@ import static org.mockito.Mockito.when;
 import com.example.demo.account.controller.CreateAccountRequestDto;
 import com.example.demo.account.controller.CreateAccountResponseDto;
 import com.example.demo.account.exception.AccountException;
+import com.example.demo.account.repository.Account;
+import com.example.demo.account.repository.AccountRepository;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,10 +43,10 @@ public class AccountServiceTest {
     void 요청한_계좌번호가_존재하지_않을_경우_새로_추가된_데이터를_반환한다() {
       // given
       Account accountMock = mock(Account.class);
-      when(accountMock.id()).thenReturn(1l);
-      when(accountMock.owner()).thenReturn(requestDTO.owner());
-      when(accountMock.accountNumber()).thenReturn(requestDTO.accountNumber());
-      when(accountMock.balance()).thenReturn(0);
+      when(accountMock.getId()).thenReturn(1l);
+      when(accountMock.getOwner()).thenReturn(requestDTO.owner());
+      when(accountMock.getAccountNumber()).thenReturn(requestDTO.accountNumber());
+      when(accountMock.getBalance()).thenReturn(0);
 
       doReturn(accountMock).when(accountRepository).save(any());
 
@@ -77,13 +79,6 @@ public class AccountServiceTest {
       assertThat(exception.getMessage()).isEqualTo("이미 존재하는 계좌번호입니다.");
     }
 
-  }
-
-  private record Account(Long id, String owner, String accountNumber, int balance) {}
-
-  private class AccountRepository {
-    public void existsByAccountNumber(String accountNumber) {}
-    public void save(Account account) {}
   }
 
 }
