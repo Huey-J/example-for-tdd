@@ -22,13 +22,7 @@ public class AccountService {
       throw new AccountException("이미 존재하는 계좌번호입니다.");
     }
 
-    Account account = new Account();
-    account.setOwner(requestDto.owner());
-    account.setAccountNumber(requestDto.accountNumber());
-    account.setPassword(requestDto.password());
-    account.setBalance(0);
-
-    Account savedAccount = accountRepository.save(account);
+    Account savedAccount = accountRepository.save(Account.create(requestDto));
 
     return new CreateAccountResponseDto(
         savedAccount.getId(),

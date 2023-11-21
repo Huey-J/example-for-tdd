@@ -9,12 +9,10 @@ import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Setter
 public class Account {
 
   @Id
@@ -29,5 +27,14 @@ public class Account {
   private String password;
   @Column(nullable = false)
   private int balance;
+
+  public static Account create(CreateAccountRequestDto dto) {
+    Account account = new Account();
+    account.owner = dto.owner();
+    account.accountNumber = dto.accountNumber();
+    account.password = dto.password();
+    account.balance = 0;
+    return account;
+  }
 
 }
