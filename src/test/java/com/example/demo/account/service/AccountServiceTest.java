@@ -78,7 +78,6 @@ public class AccountServiceTest {
       verify(accountRepository, never()).save(any());
       assertThat(exception.getMessage()).isEqualTo("이미 존재하는 계좌번호입니다.");
     }
-
   }
 
 }
