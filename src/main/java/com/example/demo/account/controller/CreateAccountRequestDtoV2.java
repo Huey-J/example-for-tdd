@@ -3,7 +3,7 @@ package com.example.demo.account.controller;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
-public record CreateAccountRequestDto (
+public record CreateAccountRequestDtoV2(
     @NotEmpty
     String owner,
     @NotEmpty

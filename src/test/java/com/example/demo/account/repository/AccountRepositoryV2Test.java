@@ -2,7 +2,7 @@ package com.example.demo.account.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.example.demo.account.controller.CreateAccountRequestDto;
+import com.example.demo.account.controller.CreateAccountRequestDtoV2;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,10 +12,10 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-public class AccountRepositoryTest {
+public class AccountRepositoryV2Test {
 
   @Autowired
-  private AccountRepository accountRepository;
+  private AccountRepositoryV2 accountRepository;
 
   @Nested
   class existsByAccountNumber {
@@ -23,8 +23,8 @@ public class AccountRepositoryTest {
     @Test
     void 계좌번호가_존재할_경우_true를_반환한다() {
       // given
-      Account account = Account.create(
-          new CreateAccountRequestDto("홍길동", "2023-1234-567890", "1234"));
+      AccountV2 account = AccountV2.create(
+          new CreateAccountRequestDtoV2("홍길동", "2023-1234-567890", "1234"));
       accountRepository.save(account);
 
       // when
@@ -37,8 +37,8 @@ public class AccountRepositoryTest {
     @Test
     void 계좌번호가_존재하지_않을_경우_false를_반환한다() {
       // given
-      Account account = Account.create(
-          new CreateAccountRequestDto("홍길동", "2023-1234-567890", "1234"));
+      AccountV2 account = AccountV2.create(
+          new CreateAccountRequestDtoV2("홍길동", "2023-1234-567890", "1234"));
       accountRepository.save(account);
 
       // when

@@ -1,11 +1,12 @@
 package com.example.demo.account.repository;
 
-import com.example.demo.account.controller.CreateAccountRequestDto;
+import com.example.demo.account.controller.CreateAccountRequestDtoV2;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Account {
+@Table(name = "account_2")
+public class AccountV2 {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +30,8 @@ public class Account {
   @Column(nullable = false)
   private int balance;
 
-  public static Account create(CreateAccountRequestDto dto) {
-    Account account = new Account();
+  public static AccountV2 create(CreateAccountRequestDtoV2 dto) {
+    AccountV2 account = new AccountV2();
     account.owner = dto.owner();
     account.accountNumber = dto.accountNumber();
     account.password = dto.password();

@@ -6,9 +6,9 @@ import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.example.demo.account.exception.AccountException;
-import com.example.demo.account.exception.GlobalExceptionHandler;
-import com.example.demo.account.service.AccountService;
+import com.example.demo.account.exception.AccountExceptionV2;
+import com.example.demo.account.exception.GlobalExceptionHandlerV2;
+import com.example.demo.account.service.AccountServiceV2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -23,12 +23,12 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @ExtendWith(MockitoExtension.class)
-public class AccountControllerTest {
+public class AccountControllerV2Test {
 
   private MockMvc mockMvc;
 
   @Mock
-  private AccountService accountService;
+  private AccountServiceV2 accountService;
   @InjectMocks
   private AccountController accountController;
 
@@ -36,7 +36,7 @@ public class AccountControllerTest {
   void init() {
     mockMvc = MockMvcBuilders
         .standaloneSetup(accountController)
-        .setControllerAdvice(new GlobalExceptionHandler())
+        .setControllerAdvice(new GlobalExceptionHandlerV2())
         .build();
   }
 
@@ -55,7 +55,7 @@ public class AccountControllerTest {
             "password": "1234"
           }
           """;
-      doReturn(new CreateAccountResponseDto(1l, "홍길동", "2023-1234-567890", 0))
+      doReturn(new CreateAccountResponseDtoV2(1l, "홍길동", "2023-1234-567890", 0))
           .when(accountService).create(any());
 
       // when
@@ -84,7 +84,7 @@ public class AccountControllerTest {
             "password": "1234"
           }
           """;
-      doThrow(new AccountException("이미 존재하는 계좌번호입니다.")).when(accountService).create(any());
+      doThrow(new AccountExceptionV2("이미 존재하는 계좌번호입니다.")).when(accountService).create(any());
 
       // when
       ResultActions result = mockMvc.perform(

@@ -10,11 +10,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.example.demo.account.controller.CreateAccountRequestDto;
-import com.example.demo.account.controller.CreateAccountResponseDto;
-import com.example.demo.account.exception.AccountException;
-import com.example.demo.account.repository.Account;
-import com.example.demo.account.repository.AccountRepository;
+import com.example.demo.account.controller.CreateAccountRequestDtoV2;
+import com.example.demo.account.controller.CreateAccountResponseDtoV2;
+import com.example.demo.account.exception.AccountExceptionV2;
+import com.example.demo.account.repository.AccountV2;
+import com.example.demo.account.repository.AccountRepositoryV2;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,12 +23,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class AccountServiceTest {
+public class AccountServiceV2Test {
 
   @Mock
-  private AccountRepository accountRepository;
+  private AccountRepositoryV2 accountRepository;
   @InjectMocks
-  private AccountService accountService;
+  private AccountServiceV2 accountService;
 
   @Nested
   class create {
@@ -36,13 +36,13 @@ public class AccountServiceTest {
     private final String requestedAccountNumber = "2023-1234-567890";
     private final String requestedPassword = "1234";
 
-    private final CreateAccountRequestDto requestDTO =
-        new CreateAccountRequestDto(requestedOwner, requestedAccountNumber, requestedPassword);
+    private final CreateAccountRequestDtoV2 requestDTO =
+        new CreateAccountRequestDtoV2(requestedOwner, requestedAccountNumber, requestedPassword);
 
     @Test
     void 요청한_계좌번호가_존재하지_않을_경우_새로_추가된_데이터를_반환한다() {
       // given
-      Account accountMock = mock(Account.class);
+      AccountV2 accountMock = mock(AccountV2.class);
       when(accountMock.getId()).thenReturn(1l);
       when(accountMock.getOwner()).thenReturn(requestDTO.owner());
       when(accountMock.getAccountNumber()).thenReturn(requestDTO.accountNumber());
@@ -53,10 +53,10 @@ public class AccountServiceTest {
       doReturn(false).when(accountRepository).existsByAccountNumber(requestedAccountNumber);
 
       // when
-      CreateAccountResponseDto responseDto = accountService.create(requestDTO);
+      CreateAccountResponseDtoV2 responseDto = accountService.create(requestDTO);
 
       // then
-      verify(accountRepository, times(1)).save(any(Account.class));
+      verify(accountRepository, times(1)).save(any(AccountV2.class));
 
       assertThat(responseDto.id()).isEqualTo(1l);
       assertThat(responseDto.owner()).isEqualTo("홍길동");
@@ -70,7 +70,7 @@ public class AccountServiceTest {
       doReturn(true).when(accountRepository).existsByAccountNumber(requestedAccountNumber);
 
       // when
-      Throwable exception = assertThrows(AccountException.class, () -> {
+      Throwable exception = assertThrows(AccountExceptionV2.class, () -> {
         accountService.create(requestDTO);
       });
 
