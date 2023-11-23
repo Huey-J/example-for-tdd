@@ -2,7 +2,9 @@ package com.example.demo.account.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.example.demo.account.controller.CreateAccountRequestDtoV2;
+import com.example.demo.v2.account.controller.CreateAccountRequestDtoV2;
+import com.example.demo.v2.account.repository.AccountRepositoryV2;
+import com.example.demo.v2.account.repository.AccountV2;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

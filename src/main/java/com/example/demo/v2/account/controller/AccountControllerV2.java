@@ -1,6 +1,6 @@
-package com.example.demo.account.controller;
+package com.example.demo.v2.account.controller;
 
-import com.example.demo.account.service.AccountServiceV2;
+import com.example.demo.v2.account.service.AccountServiceV2;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/account")
-public class AccountController {
+@RequestMapping("/api/v2/account")
+public class AccountControllerV2 {
 
   private final AccountServiceV2 accountService;
 

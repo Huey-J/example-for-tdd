@@ -1,4 +1,4 @@
-package com.example.demo.account.controller;
+package com.example.demo.v2.account.controller;
 
 public record CreateAccountResponseDtoV2(
     Long id,

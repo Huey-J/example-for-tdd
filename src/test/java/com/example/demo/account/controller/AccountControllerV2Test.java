@@ -6,9 +6,11 @@ import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.example.demo.account.exception.AccountExceptionV2;
-import com.example.demo.account.exception.GlobalExceptionHandlerV2;
-import com.example.demo.account.service.AccountServiceV2;
+import com.example.demo.v2.account.controller.AccountControllerV2;
+import com.example.demo.v2.account.controller.CreateAccountResponseDtoV2;
+import com.example.demo.v2.account.exception.AccountExceptionV2;
+import com.example.demo.v2.account.exception.GlobalExceptionHandlerV2;
+import com.example.demo.v2.account.service.AccountServiceV2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -30,7 +32,7 @@ public class AccountControllerV2Test {
   @Mock
   private AccountServiceV2 accountService;
   @InjectMocks
-  private AccountController accountController;
+  private AccountControllerV2 accountController;
 
   @BeforeEach
   void init() {
@@ -43,7 +45,7 @@ public class AccountControllerV2Test {
   @Nested
   class create {
 
-    private final String API_PATH = "/api/v1/account";
+    private final String API_PATH = "/api/v2/account";
 
     @Test
     void 계좌_추가_성공_시_200과_생성된_데이터를_반환한다() throws Exception {

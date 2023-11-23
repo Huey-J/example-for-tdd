@@ -1,10 +1,10 @@
-package com.example.demo.account.service;
+package com.example.demo.v2.account.service;
 
-import com.example.demo.account.controller.CreateAccountRequestDtoV2;
-import com.example.demo.account.controller.CreateAccountResponseDtoV2;
-import com.example.demo.account.exception.AccountExceptionV2;
-import com.example.demo.account.repository.AccountV2;
-import com.example.demo.account.repository.AccountRepositoryV2;
+import com.example.demo.v2.account.controller.CreateAccountRequestDtoV2;
+import com.example.demo.v2.account.controller.CreateAccountResponseDtoV2;
+import com.example.demo.v2.account.exception.AccountExceptionV2;
+import com.example.demo.v2.account.repository.AccountV2;
+import com.example.demo.v2.account.repository.AccountRepositoryV2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

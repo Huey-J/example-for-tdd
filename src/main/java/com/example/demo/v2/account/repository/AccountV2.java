@@ -1,6 +1,6 @@
-package com.example.demo.account.repository;
+package com.example.demo.v2.account.repository;
 
-import com.example.demo.account.controller.CreateAccountRequestDtoV2;
+import com.example.demo.v2.account.controller.CreateAccountRequestDtoV2;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
