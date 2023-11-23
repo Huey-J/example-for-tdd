@@ -1,6 +1,6 @@
-package com.example.demo.account.controller;
+package com.example.demo.v1.account.controller;
 
-import com.example.demo.account.service.AccountService;
+import com.example.demo.v1.account.service.AccountService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

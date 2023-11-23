@@ -1,4 +1,4 @@
-package com.example.demo.account.exception;
+package com.example.demo.v1.account.exception;
 
 public class AccountException extends RuntimeException {
 

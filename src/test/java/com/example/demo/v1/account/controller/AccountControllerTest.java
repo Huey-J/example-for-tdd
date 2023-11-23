@@ -1,4 +1,4 @@
-package com.example.demo.account.controller;
+package com.example.demo.v1.account.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
@@ -7,9 +7,11 @@ import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.example.demo.account.exception.AccountException;
-import com.example.demo.account.service.AccountService;
-import com.example.demo.common.GlobalExceptionHandler;
+import com.example.demo.v1.account.controller.AccountController;
+import com.example.demo.v1.account.controller.AccountTransferResponseDTO;
+import com.example.demo.v1.account.exception.AccountException;
+import com.example.demo.v1.account.service.AccountService;
+import com.example.demo.v1.common.GlobalExceptionHandler;
 import java.math.BigDecimal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;

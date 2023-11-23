@@ -1,12 +1,13 @@
-package com.example.demo.account.service;
+package com.example.demo.v1.account.service;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 
-import com.example.demo.account.controller.AccountCreateRequestDTO;
-import com.example.demo.account.repository.AccountRepository;
+import com.example.demo.v1.account.controller.AccountCreateRequestDTO;
+import com.example.demo.v1.account.repository.AccountRepository;
+import com.example.demo.v1.account.service.AccountServiceImpl;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

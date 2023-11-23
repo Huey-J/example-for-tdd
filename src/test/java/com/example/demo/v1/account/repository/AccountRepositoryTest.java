@@ -1,12 +1,13 @@
-package com.example.demo.account.repository;
+package com.example.demo.v1.account.repository;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
-import com.example.demo.account.domain.Account;
-import com.example.demo.account.repository.jpa.AccountJpaRepository;
+import com.example.demo.v1.account.domain.Account;
+import com.example.demo.v1.account.repository.AccountRepositoryImpl;
+import com.example.demo.v1.account.repository.jpa.AccountJpaRepository;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

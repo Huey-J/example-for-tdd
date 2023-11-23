@@ -1,4 +1,4 @@
-package com.example.demo.account.controller;
+package com.example.demo.v1.account.controller;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;

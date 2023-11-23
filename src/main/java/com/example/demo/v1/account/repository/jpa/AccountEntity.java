@@ -1,6 +1,6 @@
-package com.example.demo.account.repository.jpa;
+package com.example.demo.v1.account.repository.jpa;
 
-import com.example.demo.account.domain.Account;
+import com.example.demo.v1.account.domain.Account;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,8 +1,8 @@
-package com.example.demo.account.repository;
+package com.example.demo.v1.account.repository;
 
-import com.example.demo.account.domain.Account;
-import com.example.demo.account.repository.jpa.AccountEntity;
-import com.example.demo.account.repository.jpa.AccountJpaRepository;
+import com.example.demo.v1.account.domain.Account;
+import com.example.demo.v1.account.repository.jpa.AccountEntity;
+import com.example.demo.v1.account.repository.jpa.AccountJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

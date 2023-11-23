@@ -1,4 +1,4 @@
-package com.example.demo.account.domain;
+package com.example.demo.v1.account.domain;
 
 import lombok.Builder;
 

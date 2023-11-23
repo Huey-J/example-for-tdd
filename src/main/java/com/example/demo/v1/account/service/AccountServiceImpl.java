@@ -1,10 +1,10 @@
-package com.example.demo.account.service;
+package com.example.demo.v1.account.service;
 
-import com.example.demo.account.controller.AccountCreateRequestDTO;
-import com.example.demo.account.controller.AccountTransferRequestDTO;
-import com.example.demo.account.controller.AccountTransferResponseDTO;
-import com.example.demo.account.domain.Account;
-import com.example.demo.account.repository.AccountRepository;
+import com.example.demo.v1.account.controller.AccountCreateRequestDTO;
+import com.example.demo.v1.account.controller.AccountTransferRequestDTO;
+import com.example.demo.v1.account.controller.AccountTransferResponseDTO;
+import com.example.demo.v1.account.domain.Account;
+import com.example.demo.v1.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

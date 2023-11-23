@@ -1,4 +1,4 @@
-package com.example.demo.account.controller;
+package com.example.demo.v1.account.controller;
 
 import java.math.BigDecimal;
 
